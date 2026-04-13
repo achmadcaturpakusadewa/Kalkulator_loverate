@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Rate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Love Calculator ❤️</h2>
+
+    <form method="POST">
+        <input type="text" name="nama1" placeholder="Nama kamu" required>
+        <input type="text" name="nama2" placeholder="Nama pasangan" required>
+        <button type="submit">Hitung ❤️</button>
+    </form>
+
+    {% if hasil is not none %}
+    <div class="result">
+        ❤️ {{ hasil }}%
+        <span>
+            {% if hasil > 80 %}
+                Cocok banget 😍
+            {% elif hasil > 50 %}
+                Lumayan cocok 🙂
+            {% else %}
+                Perlu usaha 😅
+            {% endif %}
+        </span>
+    </div>
+{% endif %} 
+</div>
+
+</body>
+</html>
