@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Love Rate</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Love Calculator ❤️</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #ffe6e6;
+            text-align: center;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
     <h2>Love Calculator ❤️</h2>
 
-    <form method="POST">
-        <input type="text" name="nama1" placeholder="Nama kamu" required>
-        <input type="text" name="nama2" placeholder="Nama pasangan" required>
+    <form id="form">
+        <input type="text" id="nama1" placeholder="Nama kamu" required>
+        <input type="text" id="nama2" placeholder="Nama pasangan" required>
         <button type="submit">Hitung ❤️</button>
     </form>
 
-    {% if hasil is not none %}
-    <div class="result">
-        ❤️ {{ hasil }}%
-        <span>
-            {% if hasil > 80 %}
-                Cocok banget 😍
-            {% elif hasil > 50 %}
-                Lumayan cocok 🙂
-            {% else %}
-                Perlu usaha 😅
-            {% endif %}
-        </span>
-    </div>
-{% endif %} 
+    <div class="result" id="result"></div>
 </div>
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let nama1 = document.getElementById("nama1").value;
+    let nama2 = document.getElementById("nama2").value;
+
+    let hasil = Math.floor(Math.random() * 100) + 1;
+
+    let pesan = "";
+    if (hasil > 80) {
+        pesan = "Cocok banget 😍";
+    } else if (hasil > 50) {
+        pesan = "Lumayan cocok 🙂";
+    } else {
+        pesan = "Perlu usaha 😅";
+    }
+
+    document.getElementById("result").innerHTML =
+        `❤️ ${hasil}%<br>${nama1} ❤️ ${nama2}<br>${pesan}`;
+});
+</script>
 
 </body>
 </html>
